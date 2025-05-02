@@ -65,3 +65,8 @@ class JsonlIndex:
         with open(self.path, 'rb') as fh:
             fh.seek(self.index[key])
             return json.loads(fh.readline().decode('utf8'))
+
+    def __str__(self):
+        return f'JsonlIndex({self.index_path})'
+
+    __repr__ = __str__
