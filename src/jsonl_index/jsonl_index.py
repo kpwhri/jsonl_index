@@ -1,8 +1,9 @@
 """
-Index a jsonl corpus file by a particular id.
+Index a jsonl corpus file by a particular key/id.
+    If `key` is None, index will be done by line number
 
 Usage:
-    with JsonlIndex(path) as idx:
+    with JsonlIndex(path, key='id') as idx:
         data = idx.get(id)
 """
 
@@ -15,9 +16,19 @@ import logging
 
 class JsonlIndex:
 
-    def __init__(self, path: Path, key, load=False):
+    def __init__(self, path: Path, key=None, load=False):
+        """
+
+        Args:
+            path (Path): path to jsonlines corpus
+            key (str | None): if None, key by line number; else, use that idx
+            load (bool): create index if it doesn't exist yet
+        """
         self.path = path
-        self.index_path = Path(f'{path}.idx')
+        if key is None:
+            self.index_path = Path(f'{path}.idx')
+        else:
+            self.index_path = Path(f'{path}.{key}-idx')
         self.key = key
         self.index = {}
         self._is_loaded = False
@@ -49,8 +60,11 @@ class JsonlIndex:
         logging.info(f'Index not found! - building index at {self.index_path}.')
         with open(self.path, 'rb') as fh:
             offset = 0
-            for line in fh:
-                key = json.loads(line.decode('utf8'))[self.key]
+            for i, line in enumerate(fh):
+                if self.key:
+                    key = json.loads(line.decode('utf8'))[self.key]
+                else:  # use line number
+                    key = i
                 self.index[key] = offset
                 offset += len(line)
         with open(self.index_path, 'wb') as out:

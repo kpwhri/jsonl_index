@@ -7,7 +7,7 @@ individual lines of the corpus based on a key.
 Command line usage:
 
 ```bash
-ax-build-index /path/to/corpus.jsonl
+ax-build-index /path/to/corpus.jsonl [key]
 ```
 
 ```python
@@ -20,4 +20,4 @@ with JsonlIndex(path, 'id') as idx:
     data = idx.get('234')  # returns dict of row for id
 ```
 
-This will build an index at `/path/to/corpus.jsonl.idx` which will be automatically used by other scripts.
+This will build an index at `/path/to/corpus.jsonl.id-idx` which will be automatically used by other scripts.

@@ -3,3 +3,8 @@ name = "jsonl-index"
 version = "0.1.0"
 requires-python = ">=3.9"
 dependencies = []
+
+[project.scripts]
+ax-build-index = "jsonl_index.scripts.build:main"
+ax-get-index = "jsonl_index.scripts.get:main"
+ax-loop-index = "jsonl_index.scripts.loop:main"
