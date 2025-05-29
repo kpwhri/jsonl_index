@@ -8,3 +8,8 @@ dependencies = []
 ax-build-index = "jsonl_index.scripts.build:main"
 ax-get-index = "jsonl_index.scripts.get:main"
 ax-loop-index = "jsonl_index.scripts.loop:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.5",
+]
