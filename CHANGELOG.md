@@ -23,4 +23,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * Make `key` optional where defaults to the line number.
 
+[0.1.2]: https://github.com/kpwhri/jsonl_index/compare/0.1.1...0.1.2
 [0.1.1]: https://github.com/kpwhri/jsonl_index/releases/tag/0.1.1
