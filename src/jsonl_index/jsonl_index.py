@@ -80,6 +80,9 @@ class JsonlIndex:
             fh.seek(self.index[key])
             return json.loads(fh.readline().decode('utf8'))
 
+    def __len__(self):
+        return len(self.index)
+
     def __str__(self):
         return f'JsonlIndex({self.index_path})'
 
